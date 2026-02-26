@@ -1,1 +1,720 @@
 
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+.top-bar {
+    background-color: #f5f5f5;
+    padding: 10px 0;
+    font-size: 13px;
+}
+
+.container-top {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.shipping-text {
+    color: #666;
+}
+
+.contact-numbers {
+    display: flex;
+    gap: 25px;
+}
+
+.contact-numbers p {
+    color: #333;
+    font-weight: 500;
+}
+
+
+.navbar {
+    background-color: white;
+    padding: 20px 0;
+    border-bottom: 1px solid #e0e0e0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.container-nav {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-btn {
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.logo img {
+    height: 32px;
+    width: auto;
+}
+
+.nav-icons {
+    display: flex;
+    gap: 25px;
+    font-size: 20px;
+    align-items: center;
+}
+
+.icon {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.icon:hover {
+    transform: scale(1.1);
+}
+
+.cart-icon {
+    position: relative;
+}
+
+.cart-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: #1a1a1a;
+    color: white;
+    font-size: 11px;
+    padding: 2px 7px;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.hero-section {
+    height: 600px;
+    background-color: #d4c4a8;
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    margin-left: 10%;
+    color: white;
+}
+
+.hero-content h1 {
+    font-size: 60px;
+    font-weight: 300;
+    letter-spacing: 5px;
+    margin-bottom: 15px;
+}
+
+.hero-content p {
+    font-size: 22px;
+    font-weight: 300;
+    margin-bottom: 35px;
+}
+
+.shop-now-btn {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    padding: 15px 45px;
+    font-size: 14px;
+    letter-spacing: 3px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.shop-now-btn:hover {
+    background-color: white;
+    color: #333;
+}
+
+.two-column-section {
+    display: flex;
+    gap: 0;
+}
+
+.two-column-section .category-item {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.two-column-section .category-item img {
+    width: 100%;
+    height: 650px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.two-column-section .category-item:hover img {
+    transform: scale(1.05);
+}
+
+.category-overlay {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    color: white;
+    z-index: 2;
+}
+
+.shop-label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+.category-overlay h2 {
+    font-size: 40px;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+.three-column-section {
+    display: flex;
+    gap: 0;
+}
+
+.three-column-section .category-item {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.three-column-section .category-item img {
+    width: 100%;
+    height: 550px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.three-column-section .category-item:hover img {
+    transform: scale(1.05);
+}
+
+/* ========================================
+   PRODUCTS SECTION
+   ======================================== */
+.products-section {
+    padding: 80px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.product-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 50px;
+}
+
+.product-header .tab {
+    font-size: 32px;
+    font-weight: 300;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.product-header .tab:hover {
+    color: #666;
+}
+
+.product-header .tab.active {
+    color: #1a1a1a;
+    font-weight: 400;
+}
+
+.product-header .separator {
+    font-size: 32px;
+    color: #ccc;
+}
+
+.products-container {
+    position: relative;
+}
+
+.products-grid {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 10px 0;
+}
+
+.products-grid::-webkit-scrollbar {
+    display: none;
+}
+
+.product-card {
+    min-width: 280px;
+    flex-shrink: 0;
+}
+
+.product-card img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 5px;
+    transition: transform 0.3s;
+}
+
+.product-card:hover img {
+    transform: scale(1.02);
+}
+
+.scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: white;
+    border: 1px solid #ddd;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s;
+}
+
+.scroll-btn:hover {
+    background-color: #f5f5f5;
+}
+
+.scroll-btn.left {
+    left: -22px;
+}
+
+.scroll-btn.right {
+    right: -22px;
+}
+
+
+.features-section {
+    background-color: #fafafa;
+    padding: 70px 40px;
+    display: flex;
+    justify-content: center;
+    gap: 120px;
+}
+
+.feature-item {
+    text-align: center;
+}
+
+.feature-icon {
+    font-size: 55px;
+    margin-bottom: 20px;
+}
+
+.feature-item h3 {
+    font-size: 18px;
+    font-weight: 400;
+    color: #333;
+}
+
+.instagram-section {
+    padding: 60px 40px;
+    background-color: white;
+}
+
+.instagram-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 400;
+    margin-bottom: 50px;
+    color: #1a1a1a;
+}
+
+.instagram-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.instagram-item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.instagram-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 1/1;
+    transition: transform 0.4s ease;
+}
+
+.instagram-item:hover img {
+    transform: scale(1.1);
+}
+
+.footer {
+    background-color: #f5f5f5;
+    padding: 60px 40px 20px;
+}
+
+.footer-main {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 50px;
+}
+
+.footer-column h4 {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+    color: #1a1a1a;
+}
+
+.footer-logo {
+    height: 35px;
+    margin-bottom: 20px;
+}
+
+.company-description {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #666;
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column li {
+    margin-bottom: 12px;
+}
+
+.footer-column a {
+    color: #666;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.footer-column a:hover {
+    color: #1a1a1a;
+}
+
+.footer-column p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 12px;
+}
+
+
+.social-section {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 30px 0;
+    border-top: 1px solid #ddd;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    font-size: 28px;
+}
+
+.social-icon {
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.social-icon:hover {
+    transform: scale(1.2);
+}
+
+
+.copyright {
+    max-width: 1400px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 12px;
+    color: #999;
+}
+
+
+
+/* ========================================
+   RESPONSIVE DESIGN Lab Task 2
+======================================== */
+/
+@media (max-width: 1200px) {
+
+    .container-top,
+    .container-nav,
+    .products-section,
+    .instagram-section,
+    .footer {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    .features-section {
+        gap: 60px;
+    }
+
+    .footer-main {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+
+    .instagram-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+
+
+@media (max-width: 992px) {
+
+    .hero-section {
+        height: 500px;
+    }
+
+    .hero-content h1 {
+        font-size: 45px;
+    }
+
+    .hero-content p {
+        font-size: 18px;
+    }
+
+    .two-column-section {
+        flex-direction: column;
+    }
+
+    .two-column-section .category-item img {
+        height: 500px;
+    }
+
+    .three-column-section {
+        flex-wrap: wrap;
+    }
+
+    .three-column-section .category-item {
+        flex: 50%;
+    }
+
+    .three-column-section .category-item img {
+        height: 450px;
+    }
+
+    .features-section {
+        flex-wrap: wrap;
+        gap: 50px;
+    }
+
+    .instagram-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+
+@media (max-width: 768px) {
+
+    .top-bar {
+        text-align: center;
+    }
+
+    .container-top {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .contact-numbers {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .container-nav {
+        padding: 0 20px;
+    }
+
+    .logo img {
+        height: 26px;
+    }
+
+    .nav-icons {
+        gap: 15px;
+        font-size: 18px;
+    }
+
+    .hero-section {
+        height: 420px;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .hero-content {
+        margin-left: 0;
+    }
+
+    .hero-content h1 {
+        font-size: 34px;
+        letter-spacing: 3px;
+    }
+
+    .hero-content p {
+        font-size: 16px;
+    }
+
+    .shop-now-btn {
+        padding: 12px 30px;
+        font-size: 12px;
+    }
+
+    .two-column-section .category-item img {
+        height: 400px;
+    }
+
+    .three-column-section {
+        flex-direction: column;
+    }
+
+    .three-column-section .category-item {
+        flex: 100%;
+    }
+
+    .three-column-section .category-item img {
+        height: 380px;
+    }
+
+    .products-section {
+        padding: 60px 20px;
+    }
+
+    .product-header .tab {
+        font-size: 24px;
+    }
+
+    .product-card {
+        min-width: 220px;
+    }
+
+    .product-card img {
+        height: 320px;
+    }
+
+    .scroll-btn {
+        display: none;
+    }
+
+    .features-section {
+        flex-direction: column;
+        gap: 40px;
+        padding: 50px 20px;
+    }
+
+    .instagram-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer-main {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .footer {
+        padding: 50px 20px 20px;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .hero-section {
+        height: 350px;
+    }
+
+    .hero-content h1 {
+        font-size: 26px;
+    }
+
+    .hero-content p {
+        font-size: 14px;
+    }
+
+    .category-overlay {
+        bottom: 20px;
+        left: 20px;
+    }
+
+    .category-overlay h2 {
+        font-size: 24px;
+    }
+
+    .product-card {
+        min-width: 180px;
+    }
+
+    .product-card img {
+        height: 260px;
+    }
+
+    .instagram-grid {
+        grid-template-columns: 1fr;
+    }
+}
