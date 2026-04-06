@@ -1,4 +1,4 @@
-# Express Hello World 🌍
+# Express Hello World 
 
 A beginner-friendly Express.js web server project.
 
@@ -43,4 +43,4 @@ Express is a popular framework for Node.js that makes it easy to build web appli
 
 Press `Ctrl + C` in your terminal to stop the server.
 
-Happy coding! 🚀
+
