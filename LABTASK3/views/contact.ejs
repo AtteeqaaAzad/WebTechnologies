@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .page-hero {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 80px 40px;
+        }
+        .page-hero h1 { font-size: 42px; font-weight: 300; margin-bottom: 10px; }
+        .page-hero p { color: #aaa; font-size: 14px; }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 900px;
+            margin: 80px auto;
+            padding: 0 40px;
+        }
+        .contact-info h2 { font-size: 22px; font-weight: 400; margin-bottom: 25px; }
+        .contact-info p { color: #666; font-size: 15px; margin-bottom: 15px; line-height: 1.8; }
+        .contact-form h2 { font-size: 22px; font-weight: 400; margin-bottom: 25px; }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #ddd;
+            margin-bottom: 15px;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+            outline: none;
+        }
+        .contact-form textarea { height: 120px; resize: vertical; }
+        .contact-form button {
+            background: #1a1a1a;
+            color: white;
+            border: none;
+            padding: 14px 40px;
+            font-size: 14px;
+            cursor: pointer;
+            letter-spacing: 1px;
+        }
+        .back-link { display: inline-block; margin-top: 20px; color: #1a1a1a; font-weight: 600; text-decoration: none; }
+        @media(max-width: 768px) { .contact-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container-nav">
+            <div class="menu-btn">☰ Menu</div>
+            <div class="logo">
+                <a href="/">
+                    <img src="https://uniworthshop.com/cdn/shop/files/LogoSVG_bbf8eed2-7cfd-4bb6-9d51-cac4d718fe55_450x.svg?v=1761913704" alt="Uniworth Logo">
+                </a>
+            </div>
+            <div class="nav-icons">
+                <span class="icon">🔍</span>
+                <span class="icon">👤</span>
+                <span class="icon cart-icon">🛒 <span class="cart-badge">0</span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-hero">
+        <h1>Contact Us</h1>
+        <p>We'd love to hear from you</p>
+    </div>
+
+    <div class="contact-grid">
+        <div class="contact-info">
+            <h2>Get In Touch</h2>
+            <p>📞 +92 42 325 00940</p>
+            <p>💬 +92 345 4037778</p>
+            <p>✉️ Askus@Uniworthshop.com</p>
+            <p>🕒 Mon–Sat: 10:00AM to 06:00PM</p>
+            <a href="/" class="back-link">← Back to Home</a>
+        </div>
+        <div class="contact-form">
+            <h2>Send a Message</h2>
+            <input type="text" placeholder="Your Name">
+            <input type="email" placeholder="Your Email">
+            <textarea placeholder="Your Message"></textarea>
+            <button>SEND MESSAGE</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="copyright">
+            <p>UNIWORTH DRESS CO. All Rights Reserved. | Privacy Policy</p>
+        </div>
+    </footer>
+
+</body>
+</html>
