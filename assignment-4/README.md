@@ -1,16 +1,16 @@
 # Assignment 4 — E-Commerce Admin Panel (Uniworth)
 
 A secure admin panel built on top of Assignment 3, featuring:
-- 🔐 Login-protected admin area
-- 📊 Dashboard with inventory stats
-- ✏️ Full CRUD operations on products
-- 🖼️ Image upload with **Multer**
-- 🗑️ Delete with confirmation popup
-- ✅ Form validation (client + server side)
+-  Login-protected admin area
+-  Dashboard with inventory stats
+-  Full CRUD operations on products
+-  Image upload with **Multer**
+- Delete with confirmation popup
+-  Form validation (client + server side)
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 assignment-4/
@@ -37,7 +37,7 @@ assignment-4/
 │   │   └── admin.css                 # Admin panel styles
 │   ├── js/main.js
 │   ├── asset/                        # Static product images
-│   └── uploads/                      # 🆕 Multer destination
+│   └── uploads/                      #  Multer destination
 └── views/
     ├── partials/                     # Public site partials
     ├── index.ejs
@@ -47,14 +47,14 @@ assignment-4/
         │   ├── header.ejs
         │   ├── sidebar.ejs
         │   └── footer.ejs
-        ├── login.ejs                 # 🆕 Admin login
-        ├── dashboard.ejs             # 🆕 Stats + product table
-        └── product-form.ejs          # 🆕 Create/Edit form
+        ├── login.ejs                 #  Admin login
+        ├── dashboard.ejs             # Stats + product table
+        └── product-form.ejs          # Create/Edit form
 ```
 
 ---
 
-## 🚀 Setup (6 steps)
+##  Setup (6 steps)
 
 ### 1. Install dependencies
 ```bash
@@ -80,29 +80,29 @@ npm run dev
 ### 6. Open the admin panel
 Go to → **http://localhost:3000/admin/login**
 
-🔑 **Default credentials:**
+ **Default credentials:**
 - Username: `admin`
 - Password: `admin123`
 
 ---
 
-## 🎯 Assignment 4 Features
+##  Assignment 4 Features
 
 | Requirement | Implementation |
 |-------------|----------------|
-| ✅ Separate admin layout | Dedicated sidebar layout (`views/admin/partials/sidebar.ejs`) |
-| ✅ Dashboard summary table | Shows Image, Name, Category, Price, Stock, Rating + 5 stat cards |
-| ✅ **Create** product | `/admin/products/new` with image upload |
-| ✅ **Read** products | Dashboard table at `/admin` |
-| ✅ **Update** product | Edit button → pre-filled form, optional image replacement |
-| ✅ **Delete** product | Delete button + **JavaScript confirm() popup** |
-| ✅ Form validation | Both client-side AND server-side |
-| ✅ **Multer** image upload | Saves to `/public/uploads/`, path stored in DB |
-| 🎁 **Bonus** | Session-based login, stock badges, live table filter, image preview, flash messages |
+|  Separate admin layout | Dedicated sidebar layout (`views/admin/partials/sidebar.ejs`) |
+|  Dashboard summary table | Shows Image, Name, Category, Price, Stock, Rating + 5 stat cards |
+|  **Create** product | `/admin/products/new` with image upload |
+|  **Read** products | Dashboard table at `/admin` |
+|  **Update** product | Edit button → pre-filled form, optional image replacement |
+|  **Delete** product | Delete button + **JavaScript confirm() popup** |
+|  Form validation | Both client-side AND server-side |
+|  **Multer** image upload | Saves to `/public/uploads/`, path stored in DB |
+|  **Bonus** | Session-based login, stock badges, live table filter, image preview, flash messages |
 
 ---
 
-## 🔐 Admin Panel Routes
+##  Admin Panel Routes
 
 | Method | URL | Description |
 |--------|-----|-------------|
@@ -120,7 +120,7 @@ Go to → **http://localhost:3000/admin/login**
 
 ---
 
-## 🖼️ Image Upload Flow
+##  Image Upload Flow
 
 1. Admin selects an image in the form (`<input type="file" name="image">`)
 2. Multer middleware intercepts the request
@@ -132,20 +132,20 @@ Go to → **http://localhost:3000/admin/login**
 
 ---
 
-## 🧪 Try These Workflows
+##  Try These Workflows
 
-### ➕ Create a product:
+###  Create a product:
 1. Login → Click **"Add New Product"**
 2. Fill form, upload an image, submit
 3. See it appear in the dashboard table immediately
 
-### ✏️ Edit a product:
-1. Click ✏️ **Edit** on any row
+###  Edit a product:
+1. Click  **Edit** on any row
 2. Modify fields, optionally upload a new image
 3. Save → confirmation flash message appears
 
-### 🗑️ Delete a product:
-1. Click 🗑️ **Delete** on any row
+###  Delete a product:
+1. Click  **Delete** on any row
 2. **Browser confirm popup** asks for confirmation
 3. Click OK → product deleted, image removed from disk
 
@@ -155,7 +155,7 @@ Go to → **http://localhost:3000/admin/login**
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 - **Backend:** Node.js, Express.js
 - **Database:** MongoDB + Mongoose
@@ -167,7 +167,7 @@ Go to → **http://localhost:3000/admin/login**
 
 ---
 
-## 🐛 Troubleshooting
+##  Troubleshooting
 
 | Issue | Fix |
 |-------|-----|
@@ -179,7 +179,7 @@ Go to → **http://localhost:3000/admin/login**
 
 ---
 
-## ⚠️ Security Notes (for production)
+##  Security Notes (for production)
 
 This implementation uses simple hardcoded credentials and an in-memory session store for **academic purposes**. In production you'd want to:
 - Hash passwords with bcrypt
