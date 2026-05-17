@@ -1,0 +1,24 @@
+<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+<%- include('partials/flash') %>
+
+<section class="cart-page">
+    <div class="cart-container">
+        <h1>Shopping Cart</h1>
+
+        <div class="cart-layout">
+            <!-- Cart items rendered by JS -->
+            <div id="cart-items-container" class="cart-items-wrapper">
+                <!-- Rendered by Cart.renderCartPage() in main.js -->
+                <div style="text-align:center; padding: 60px; color:#888;">
+                    Loading your cart...
+                </div>
+            </div>
+
+            <!-- Order summary rendered by JS -->
+            <div id="cart-summary-container" class="cart-summary-wrapper"></div>
+        </div>
+    </div>
+</section>
+
+<%- include('partials/footer') %>

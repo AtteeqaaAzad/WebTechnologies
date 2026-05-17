@@ -1,0 +1,30 @@
+<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+<%- include('partials/flash') %>
+
+<section class="checkout-page">
+    <div class="checkout-container">
+        <h1>Checkout</h1>
+        <p class="checkout-welcome">
+            ✅ Hello, <strong><%= currentUser.name %></strong>! You're logged in.
+        </p>
+
+        <div class="checkout-card">
+            <h2>🛒 Your Cart</h2>
+            <p style="color: #888; padding: 30px 0;">
+                Your cart is empty. This is a protected route, accessible only to logged-in users.
+            </p>
+
+            <div style="margin-top: 30px; padding: 20px; background: #fafafa; border-radius: 5px;">
+                <h3 style="margin-bottom: 10px;">🛡️ Access Status</h3>
+                <p>✓ <strong>isLoggedIn</strong> middleware allowed you to access this page.</p>
+                <p>✓ Session ID active in MongoDB.</p>
+                <p>✓ Logged in as: <code><%= currentUser.email %></code> (<%= currentUser.role %>)</p>
+            </div>
+
+            <a href="/products" class="checkout-btn">← Continue Shopping</a>
+        </div>
+    </div>
+</section>
+
+<%- include('partials/footer') %>
