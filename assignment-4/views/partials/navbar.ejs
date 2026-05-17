@@ -1,0 +1,54 @@
+<nav class="navbar">
+    <div class="container-nav">
+        <!-- Hamburger for mobile -->
+        <div class="menu-btn" id="menuBtn">☰</div>
+
+        <!-- Logo -->
+        <div class="logo">
+            <a href="/">
+                <img src="https://uniworthshop.com/cdn/shop/files/LogoSVG_bbf8eed2-7cfd-4bb6-9d51-cac4d718fe55_450x.svg?v=1761913704" alt="Uniworth Logo">
+            </a>
+        </div>
+
+        <!-- Navigation Menu -->
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="/">Home</a></li>
+            <li class="dropdown">
+                <a href="/products">Shop ▾</a>
+                <ul class="dropdown-menu">
+                    <li><a href="/products?category=polo">Polo Shirts</a></li>
+                    <li><a href="/products?category=casual">Casual Shirts</a></li>
+                    <li><a href="/products?category=ethnic">Ethnic</a></li>
+                    <li><a href="/products?category=blazers">Blazers</a></li>
+                    <li><a href="/products?category=coord">Co-ord Sets</a></li>
+                    <li><a href="/products?category=gurkha">Gurkha Pants</a></li>
+                </ul>
+            </li>
+            <li><a href="/products">All Products</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/admin" style="color: #c0392b;">🔐 Admin</a></li>
+        </ul>
+
+        <!-- Icons -->
+        <div class="nav-icons">
+            <span class="icon" id="searchIcon">🔍</span>
+            <a href="/auth"><span class="icon">👤</span></a>
+            <a href="/cart">
+                <span class="icon cart-icon">
+                    🛒
+                    <span class="cart-badge">0</span>
+                </span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Toggleable Search Bar -->
+    <div class="search-bar" id="searchBar">
+        <div class="container-nav">
+            <input type="text" placeholder="Search for products...">
+            <button>Search</button>
+            <span class="close-search" id="closeSearch">✕</span>
+        </div>
+    </div>
+</nav>

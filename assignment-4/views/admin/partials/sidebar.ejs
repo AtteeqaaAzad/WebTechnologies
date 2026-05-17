@@ -1,0 +1,24 @@
+<aside class="admin-sidebar">
+    <div class="sidebar-brand">
+        <h2>UNIWORTH</h2>
+        <p>Admin Panel</p>
+    </div>
+
+    <nav class="sidebar-nav">
+        <a href="/admin" class="sidebar-link <%= typeof activePage !== 'undefined' && activePage === 'dashboard' ? 'active' : '' %>">
+            📊 <span>Dashboard</span>
+        </a>
+        <a href="/admin/products/new" class="sidebar-link <%= typeof activePage !== 'undefined' && activePage === 'new' ? 'active' : '' %>">
+            ➕ <span>Add Product</span>
+        </a>
+        <a href="/products" target="_blank" class="sidebar-link">
+            🌐 <span>View Store</span>
+        </a>
+    </nav>
+
+    <div class="sidebar-footer">
+        <a href="/admin/logout" class="logout-btn">
+            🚪 Logout
+        </a>
+    </div>
+</aside>

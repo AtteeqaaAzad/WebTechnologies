@@ -1,0 +1,190 @@
+<% const activePage = 'dashboard'; %>
+<%- include('partials/header') %>
+
+<div class="admin-layout">
+    <%- include('partials/sidebar') %>
+
+    <main class="admin-main">
+        <header class="admin-header">
+            <div>
+                <h1>Dashboard</h1>
+                <p class="subtitle">Manage your product inventory</p>
+            </div>
+            <a href="/admin/products/new" class="btn btn-primary">
+                ➕ Add New Product
+            </a>
+        </header>
+
+        <!-- Flash messages -->
+        <% if (success) { %>
+            <div class="alert alert-success" id="flash">
+                ✅ <%= success %>
+            </div>
+        <% } %>
+        <% if (error) { %>
+            <div class="alert alert-error" id="flash">
+                ⚠️ <%= error %>
+            </div>
+        <% } %>
+
+        <!-- ═══ STATS CARDS ═══ -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">📦</div>
+                <div class="stat-content">
+                    <p class="stat-label">Total Products</p>
+                    <h2 class="stat-value"><%= stats.totalProducts %></h2>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">📊</div>
+                <div class="stat-content">
+                    <p class="stat-label">Total Stock</p>
+                    <h2 class="stat-value"><%= stats.totalStock.toLocaleString() %></h2>
+                </div>
+            </div>
+
+            <div class="stat-card warning">
+                <div class="stat-icon">⚠️</div>
+                <div class="stat-content">
+                    <p class="stat-label">Low Stock</p>
+                    <h2 class="stat-value"><%= stats.lowStock %></h2>
+                </div>
+            </div>
+
+            <div class="stat-card danger">
+                <div class="stat-icon">❌</div>
+                <div class="stat-content">
+                    <p class="stat-label">Out of Stock</p>
+                    <h2 class="stat-value"><%= stats.outOfStock %></h2>
+                </div>
+            </div>
+
+            <div class="stat-card success">
+                <div class="stat-icon">💰</div>
+                <div class="stat-content">
+                    <p class="stat-label">Inventory Value</p>
+                    <h2 class="stat-value">Rs. <%= stats.totalValue.toLocaleString() %></h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══ PRODUCTS TABLE ═══ -->
+        <div class="table-section">
+            <div class="table-header">
+                <h2>All Products</h2>
+                <input type="text" id="tableSearch" class="table-search" placeholder="🔍 Quick filter table...">
+            </div>
+
+            <% if (products.length === 0) { %>
+                <div class="empty-state">
+                    <p>📭 No products yet.</p>
+                    <a href="/admin/products/new" class="btn btn-primary">Add your first product</a>
+                </div>
+            <% } else { %>
+                <div class="table-wrapper">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Rating</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productsTableBody">
+                            <% products.forEach(function(product) { %>
+                                <tr>
+                                    <td>
+                                        <img src="<%= product.image %>" alt="<%= product.name %>" class="table-img">
+                                    </td>
+                                    <td>
+                                        <strong><%= product.name %></strong>
+                                    </td>
+                                    <td>
+                                        <span class="category-pill"><%= product.category %></span>
+                                    </td>
+                                    <td class="price-cell">
+                                        Rs. <%= product.price.toLocaleString() %>
+                                    </td>
+                                    <td>
+                                        <% if (product.stock === 0) { %>
+                                            <span class="stock-badge out">Out of Stock</span>
+                                        <% } else if (product.stock < 10) { %>
+                                            <span class="stock-badge low"><%= product.stock %> left</span>
+                                        <% } else { %>
+                                            <span class="stock-badge ok"><%= product.stock %> in stock</span>
+                                        <% } %>
+                                    </td>
+                                    <td>
+                                        <span class="rating-cell">
+                                            ⭐ <%= product.rating.toFixed(1) %>
+                                        </span>
+                                    </td>
+                                    <td class="actions-cell">
+                                        <a href="/admin/products/<%= product._id %>/edit" class="btn-icon btn-edit" title="Edit">
+                                            ✏️ Edit
+                                        </a>
+                                        <form
+                                            action="/admin/products/<%= product._id %>?_method=DELETE"
+                                            method="POST"
+                                            class="delete-form"
+                                            data-product-name="<%= product.name %>"
+                                        >
+                                            <button type="submit" class="btn-icon btn-delete" title="Delete">
+                                                🗑️ Delete
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+            <% } %>
+        </div>
+    </main>
+</div>
+
+<script>
+    // ─── Delete confirmation popup ───
+    document.querySelectorAll('.delete-form').forEach(function (form) {
+        form.addEventListener('submit', function (e) {
+            const productName = form.dataset.productName;
+            const confirmed = confirm(
+                `⚠️ Are you sure you want to DELETE "${productName}"?\n\nThis action cannot be undone.`
+            );
+            if (!confirmed) {
+                e.preventDefault();
+            }
+        });
+    });
+
+    // ─── Live table search ───
+    const searchInput = document.getElementById('tableSearch');
+    if (searchInput) {
+        searchInput.addEventListener('input', function () {
+            const term = this.value.toLowerCase();
+            document.querySelectorAll('#productsTableBody tr').forEach(function (row) {
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(term) ? '' : 'none';
+            });
+        });
+    }
+
+    // ─── Auto-dismiss flash messages after 4s ───
+    const flash = document.getElementById('flash');
+    if (flash) {
+        setTimeout(function () {
+            flash.style.transition = 'opacity 0.5s';
+            flash.style.opacity = '0';
+            setTimeout(() => flash.remove(), 500);
+        }, 4000);
+    }
+</script>
+
+<%- include('partials/footer') %>
