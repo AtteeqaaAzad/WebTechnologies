@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= typeof pageTitle !== 'undefined' ? pageTitle : 'Uniworth' %></title>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav style="background:#222; padding:15px 30px; color:white; display:flex; justify-content:space-between; align-items:center;">
+    <a href="/" style="color:white; text-decoration:none; font-size:22px; font-weight:bold;">Uniworth</a>
+    <div style="display:flex; gap:20px;">
+      <a href="/products" style="color:white; text-decoration:none;">Products</a>
+      <a href="/onsale-products" style="color:white; text-decoration:none;">🔥 On Sale</a>
+      <a href="/cart" style="color:white; text-decoration:none;">Cart</a>
+      <% if (currentUser) { %>
+        <a href="/auth/logout" style="color:white; text-decoration:none;">Logout</a>
+      <% } else { %>
+        <a href="/auth/login" style="color:white; text-decoration:none;">Login</a>
+      <% } %>
+    </div>
+  </nav>
+
+  <!-- Flash Messages -->
+  <% if (success && success.length > 0) { %>
+    <div style="background:#d4edda; color:#155724; padding:10px 30px;">
+      <%= success[0] %>
+    </div>
+  <% } %>
+  <% if (error && error.length > 0) { %>
+    <div style="background:#f8d7da; color:#721c24; padding:10px 30px;">
+      <%= error[0] %>
+    </div>
+  <% } %>
+
+  <!-- Page Content -->
+  <%- body %>
+
+  <!-- Footer -->
+  <footer style="background:#222; color:white; text-align:center; padding:20px; margin-top:50px;">
+    <p>© 2026 Uniworth. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar') %>
+<%- include('../partials/flash') %>
+
+<section class="profile-page">
+    <div class="profile-container">
+        <h1>My Profile</h1>
+
+        <div class="profile-card">
+            <div class="profile-avatar">
+                <%= user.name.charAt(0).toUpperCase() %>
+            </div>
+
+            <div class="profile-info">
+                <div class="info-row">
+                    <span class="info-label">Name:</span>
+                    <span class="info-value"><%= user.name %></span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Email:</span>
+                    <span class="info-value"><%= user.email %></span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Role:</span>
+                    <span class="info-value">
+                        <span class="role-badge role-<%= user.role %>"><%= user.role.toUpperCase() %></span>
+                    </span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Member since:</span>
+                    <span class="info-value"><%= user.createdAt.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %></span>
+                </div>
+            </div>
+
+            <div class="profile-actions">
+                <% if (user.role === 'admin') { %>
+                    <a href="/admin" class="profile-btn admin">🔐 Go to Admin Panel</a>
+                <% } %>
+                <a href="/products" class="profile-btn">🛍️ Browse Products</a>
+                <a href="/auth/logout" class="profile-btn logout">🚪 Logout</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<%- include('../partials/footer') %>

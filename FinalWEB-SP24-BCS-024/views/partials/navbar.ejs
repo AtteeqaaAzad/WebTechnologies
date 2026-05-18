@@ -1,0 +1,79 @@
+<nav class="navbar">
+    <div class="container-nav">
+        <!-- Hamburger for mobile -->
+        <div class="menu-btn" id="menuBtn">☰</div>
+
+        <!-- Logo -->
+        <div class="logo">
+            <a href="/">
+                <img src="https://uniworthshop.com/cdn/shop/files/LogoSVG_bbf8eed2-7cfd-4bb6-9d51-cac4d718fe55_450x.svg?v=1761913704" alt="Uniworth Logo">
+            </a>
+        </div>
+
+        <!-- Navigation Menu -->
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="/">Home</a></li>
+            <li class="dropdown">
+                <a href="/products">Shop ▾</a>
+                <ul class="dropdown-menu">
+                    <li><a href="/products?category=Polo%20Shirts">Polo Shirts</a></li>
+                    <li><a href="/products?category=Casual%20Shirts">Casual Shirts</a></li>
+                    <li><a href="/products?category=Ethnic">Ethnic</a></li>
+                    <li><a href="/products?category=Blazers">Blazers</a></li>
+                    <li><a href="/products?category=Co-ord%20Sets">Co-ord Sets</a></li>
+                    <li><a href="/products?category=Gurkha%20Pants">Gurkha Pants</a></li>
+                </ul>
+            </li>
+            <li><a href="/products">All Products</a></li>
+            <li><a href="/checkout">Checkout</a></li>
+            <li><a href="/onsale-products" style="color: red; font-weight: bold;">🔥 On Sale</a></li>
+
+            <!-- ─── Dynamic Auth-Aware Links ─── -->
+            <% if (currentUser) { %>
+                <!-- Logged-in user -->
+                <li class="dropdown user-dropdown">
+                    <a href="#" class="user-menu-trigger">
+                        👤 <%= currentUser.name.split(' ')[0] %> ▾
+                    </a>
+                    <ul class="dropdown-menu user-menu">
+                        <li class="user-info">
+                            <small><%= currentUser.email %></small>
+                            <span class="role-badge role-<%= currentUser.role %>"><%= currentUser.role %></span>
+                        </li>
+                        <li><a href="/auth/profile">👤 My Profile</a></li>
+                        <% if (currentUser.role === 'admin') { %>
+                            <li><a href="/admin" style="color:#c0392b;">🔐 Admin Panel</a></li>
+                        <% } %>
+                        <li><a href="/auth/logout" style="color:#e74c3c;">🚪 Logout</a></li>
+                    </ul>
+                </li>
+            <% } else { %>
+                <!-- Guest -->
+                <li><a href="/auth/login" class="login-link">Sign In</a></li>
+                <li><a href="/auth/register" class="register-link">Register</a></li>
+            <% } %>
+        </ul>
+
+        <!-- Icons -->
+        <div class="nav-icons">
+            <span class="icon" id="searchIcon">🔍</span>
+            <a href="/checkout">
+                <span class="icon cart-icon">
+                    🛒
+                    <span class="cart-badge">0</span>
+                </span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Toggleable Search Bar -->
+    <div class="search-bar" id="searchBar">
+        <div class="container-nav">
+            <form action="/products" method="GET" style="display: contents;">
+                <input type="text" name="search" placeholder="Search for products...">
+                <button type="submit">Search</button>
+                <span class="close-search" id="closeSearch">✕</span>
+            </form>
+        </div>
+    </div>
+</nav>

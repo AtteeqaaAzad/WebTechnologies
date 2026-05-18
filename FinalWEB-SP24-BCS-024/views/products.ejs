@@ -1,0 +1,192 @@
+<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+<%- include('partials/flash') %>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+    <div class="container-products">
+        <a href="/">Home</a> / <span>All Products</span>
+    </div>
+</div>
+
+<!-- ============================================
+     PRODUCTS PAGE — Sidebar + Grid
+     ============================================ -->
+<section class="products-page">
+    <div class="container-products">
+
+        <!-- ═══ FILTERS SIDEBAR ═══ -->
+        <aside class="filters-sidebar">
+            <form action="/products" method="GET" id="filterForm">
+                <h3 class="filter-title">Filters</h3>
+
+                <!-- Search -->
+                <div class="filter-group">
+                    <h4>Search</h4>
+                    <input
+                        type="text"
+                        name="search"
+                        placeholder="Search products..."
+                        value="<%= filters.search %>"
+                    >
+                </div>
+
+                <!-- Category -->
+                <div class="filter-group">
+                    <h4>Category</h4>
+                    <label class="filter-option">
+                        <input type="radio" name="category" value=""
+                            <%= filters.category === '' ? 'checked' : '' %>>
+                        All Categories
+                    </label>
+                    <% categories.forEach(function(cat) { %>
+                        <label class="filter-option">
+                            <input type="radio" name="category" value="<%= cat %>"
+                                <%= filters.category === cat ? 'checked' : '' %>>
+                            <%= cat %>
+                        </label>
+                    <% }); %>
+                </div>
+
+                <!-- Price Range -->
+                <div class="filter-group">
+                    <h4>Price Range (Rs.)</h4>
+                    <div class="price-inputs">
+                        <input
+                            type="number"
+                            name="minPrice"
+                            placeholder="Min"
+                            value="<%= filters.minPrice %>"
+                            min="0"
+                        >
+                        <span>—</span>
+                        <input
+                            type="number"
+                            name="maxPrice"
+                            placeholder="Max"
+                            value="<%= filters.maxPrice %>"
+                            min="0"
+                        >
+                    </div>
+                </div>
+
+                <!-- Preserve sort when applying filters -->
+                <input type="hidden" name="sort" value="<%= filters.sort %>">
+
+                <button type="submit" class="apply-btn">Apply Filters</button>
+                <a href="/products" class="clear-btn">Clear All</a>
+            </form>
+        </aside>
+
+        <!-- ═══ PRODUCTS MAIN AREA ═══ -->
+        <div class="products-main">
+
+            <!-- Toolbar: count + sort -->
+            <div class="products-toolbar">
+                <p class="results-count">
+                    Showing
+                    <strong>
+                        <%= totalProducts === 0 ? 0 : ((currentPage - 1) * limit + 1) %>–<%= Math.min(currentPage * limit, totalProducts) %>
+                    </strong>
+                    of <strong><%= totalProducts %></strong> products
+                </p>
+
+                <form action="/products" method="GET" class="sort-form">
+                    <!-- Preserve other filters when sorting -->
+                    <input type="hidden" name="search" value="<%= filters.search %>">
+                    <input type="hidden" name="category" value="<%= filters.category %>">
+                    <input type="hidden" name="minPrice" value="<%= filters.minPrice %>">
+                    <input type="hidden" name="maxPrice" value="<%= filters.maxPrice %>">
+
+                    <label>Sort by:</label>
+                    <select name="sort" onchange="this.form.submit()" class="sort-select">
+                        <option value="newest"     <%= filters.sort === 'newest' ? 'selected' : '' %>>Newest</option>
+                        <option value="price-low"  <%= filters.sort === 'price-low' ? 'selected' : '' %>>Price: Low to High</option>
+                        <option value="price-high" <%= filters.sort === 'price-high' ? 'selected' : '' %>>Price: High to Low</option>
+                        <option value="rating"     <%= filters.sort === 'rating' ? 'selected' : '' %>>Top Rated</option>
+                        <option value="name"       <%= filters.sort === 'name' ? 'selected' : '' %>>Name (A–Z)</option>
+                    </select>
+                </form>
+            </div>
+
+            <!-- Products grid -->
+            <% if (products.length === 0) { %>
+                <div class="no-products">
+                    <h2>😔 No products found</h2>
+                    <p>Try adjusting your filters or <a href="/products">clear all</a>.</p>
+                </div>
+            <% } else { %>
+                <div class="products-grid">
+                    <% products.forEach(function(product) { %>
+                        <div class="product-card-grid">
+                            <div class="product-image-wrapper">
+                                <img src="<%= product.image %>" alt="<%= product.name %>">
+                                <% if (product.stock === 0) { %>
+                                    <span class="badge out-of-stock">Out of Stock</span>
+                                <% } else if (product.stock < 10) { %>
+                                    <span class="badge low-stock">Only <%= product.stock %> left</span>
+                                <% } %>
+                            </div>
+                            <div class="product-info">
+                                <p class="category-tag"><%= product.category %></p>
+                                <h3 class="product-name"><%= product.name %></h3>
+                                <p class="product-rating">
+                                    <% const fullStars = Math.floor(product.rating); %>
+                                    <% for (let i = 0; i < fullStars; i++) { %>★<% } %>
+                                    <% for (let i = fullStars; i < 5; i++) { %>☆<% } %>
+                                    <span>(<%= product.rating.toFixed(1) %>)</span>
+                                </p>
+                                <p class="product-price">Rs. <%= product.price.toLocaleString() %></p>
+                                <button class="add-cart-btn" <%= product.stock === 0 ? 'disabled' : '' %>>
+                                    <%= product.stock === 0 ? 'Out of Stock' : 'Add to Cart' %>
+                                </button>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+
+                <!-- ═══ PAGINATION ═══ -->
+                <% if (totalPages > 1) { %>
+                    <div class="pagination">
+                        <!-- Build base query string preserving all filters -->
+                        <% function buildUrl(p) {
+                            const params = new URLSearchParams();
+                            params.set('page', p);
+                            if (filters.search)   params.set('search', filters.search);
+                            if (filters.category) params.set('category', filters.category);
+                            if (filters.minPrice) params.set('minPrice', filters.minPrice);
+                            if (filters.maxPrice) params.set('maxPrice', filters.maxPrice);
+                            if (filters.sort)     params.set('sort', filters.sort);
+                            return '/products?' + params.toString();
+                        } %>
+
+                        <!-- Previous button -->
+                        <% if (currentPage > 1) { %>
+                            <a href="<%= buildUrl(currentPage - 1) %>" class="page-btn">« Previous</a>
+                        <% } else { %>
+                            <span class="page-btn disabled">« Previous</span>
+                        <% } %>
+
+                        <!-- Page numbers -->
+                        <% for (let i = 1; i <= totalPages; i++) { %>
+                            <% if (i === currentPage) { %>
+                                <span class="page-btn active"><%= i %></span>
+                            <% } else { %>
+                                <a href="<%= buildUrl(i) %>" class="page-btn"><%= i %></a>
+                            <% } %>
+                        <% } %>
+
+                        <!-- Next button -->
+                        <% if (currentPage < totalPages) { %>
+                            <a href="<%= buildUrl(currentPage + 1) %>" class="page-btn">Next »</a>
+                        <% } else { %>
+                            <span class="page-btn disabled">Next »</span>
+                        <% } %>
+                    </div>
+                <% } %>
+            <% } %>
+        </div>
+    </div>
+</section>
+
+<%- include('partials/footer') %>
